@@ -1,8 +1,10 @@
 # wordle
-Simulation of the NYT game Wordle \n
+Simulation of the NYT game Wordle 
+
 Made with Python 3 
 
-The word bank used is the same as the NYT version. \n
+The word bank used is the same as the NYT version. 
+
 The answer is randomly generated amongst an answer bank.
 
 To play:
