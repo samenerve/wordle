@@ -1,5 +1,5 @@
-# wordle
-Simulation of the NYT game Wordle 
+# wordle (unfinished)
+Simulation of the NYT game Wordle (Unfinished)
 
 Made with Python 3 
 
