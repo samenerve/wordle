@@ -1,4 +1,3 @@
-
 from termcolor import colored, cprint
 import random
 
@@ -6,7 +5,7 @@ word_bank = open('word_bank.py','r')
 words = word_bank.read()
 allowed_words = words.split('\n')
 
-answer = {1:'S', 2:'I', 3:'M', 4:'O', 5:'N'}
+answer = {1:'S', 2:'S', 3:'S', 4:'O', 5:'N'}
 current = {1:'_', 2:'_', 3:'_', 4:'_', 5:'_'}
 color = {1: '', 2: '', 3: '', 4: '', 5: ''}
 
@@ -14,8 +13,15 @@ response = ''
 turn = 1
 
 print('WORDLE'.center(9))
+#counters
+answer_count = {}
+for a in answer.values():
+    answer_count.setdefault(a,0)
+    answer_count[a] = answer_count[a] + 1
 #convert user response to dict
 while turn <= 6:
+    color = {1: '', 2: '', 3: '', 4: '', 5: ''}
+    word_count = {}
     r_count = 0
     response = input()[:5]
     print ("\033[A                             \033[A")
@@ -27,15 +33,20 @@ while turn <= 6:
         current[r_count] = str.upper(r)
 #compare current to answer
     for n, c in current.items():
+        word_count.setdefault(c,0)
+        word_count[c] = word_count[c] + 1
+        if current[n] == answer[n]:
+            color[n] = 'green'
+            continue
         for x,a in answer.items():
-            if c == answer[x] and n == x:
-                color[n] = 'green'
+            if word_count[c] <= answer_count[a]:
+                if c == a:
+                    color[n] = 'yellow'
+                    continue
+                elif color[n] != '':
+                    break
+            elif color[n] != '':
                 break
-            elif c == answer[x] and n != x:
-                color[n] = 'yellow'
-                break
-            else:
-                color[n] = ''
 #display answer
     for k,c in color.items():
         if c == 'yellow' or c == 'green':
