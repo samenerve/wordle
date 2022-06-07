@@ -7,6 +7,9 @@ The word bank used is the same as the NYT version.
 
 The answer is randomly generated amongst an answer bank.
 
+Currently missing:
+1. Answer bank
+
 To play:
 1. Install the 'termcolor' python library
 2. Run the file 'wordle.py' in terminal/CMD
