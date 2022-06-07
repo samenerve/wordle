@@ -7,7 +7,6 @@ allowed_words = words.split('\n')
 
 answer = {1:'S', 2:'S', 3:'S', 4:'O', 5:'N'}
 current = {1:'_', 2:'_', 3:'_', 4:'_', 5:'_'}
-color = {1: '', 2: '', 3: '', 4: '', 5: ''}
 
 response = ''
 turn = 1
