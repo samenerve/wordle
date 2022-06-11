@@ -1,12 +1,21 @@
 from termcolor import colored, cprint
 import random
 
+final_answer = {1:'', 2:'', 3:'', 4:'', 5:''}
+
 word_bank = open('word_bank.py','r')
 words = word_bank.read()
 allowed_words = words.split('\n')
 
-answer = {1:'S', 2:'S', 3:'S', 4:'O', 5:'N'}
-current = {1:'_', 2:'_', 3:'_', 4:'_', 5:'_'}
+answer_bank = open('answer_bank.py', 'r')
+answer = answer_bank.read()
+answer = answer.split('\n')
+answer = str.upper(random.choice(answer))
+counter = 0
+
+for letter in answer:
+    counter += 1
+    final_answer[counter] = letter
 
 response = ''
 turn = 1
@@ -14,17 +23,18 @@ turn = 1
 print('WORDLE'.center(9))
 #counters
 answer_count = {}
-for a in answer.values():
+for a in final_answer.values():
     answer_count.setdefault(a,0)
     answer_count[a] = answer_count[a] + 1
 #convert user response to dict
 while turn <= 6:
+    current = {1:'', 2:'', 3:'', 4:'', 5:''}
     color = {1: '', 2: '', 3: '', 4: '', 5: ''}
     word_count = {}
     r_count = 0
     response = input()[:5]
     print ("\033[A                             \033[A")
-    if response not in allowed_words:
+    if response not in allowed_words or response == '':
         print ('', end = '')
         continue
     for r in response:
@@ -34,16 +44,16 @@ while turn <= 6:
     for n, c in current.items():
         word_count.setdefault(c,0)
         word_count[c] = word_count[c] + 1
-        if current[n] == answer[n]:
+        if current[n] == final_answer[n]:
             color[n] = 'green'
             continue
-        for x,a in answer.items():
+        for x,a in final_answer.items():
             if word_count[c] <= answer_count[a]:
-                if c == a:
+                if color[n] != '':
+                    break
+                elif c == a:
                     color[n] = 'yellow'
                     continue
-                elif color[n] != '':
-                    break
             elif color[n] != '':
                 break
 #display answer
@@ -59,5 +69,5 @@ while turn <= 6:
         exit()
     else:
         turn += 1
+print(answer)
 print('Better luck next time!')
-exit()
