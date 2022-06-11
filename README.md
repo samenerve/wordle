@@ -1,14 +1,11 @@
-# wordle (unfinished)
-Simulation of the NYT game Wordle (Unfinished)
+# wordle
+Simulation of the NYT game Wordle
 
 Made with Python 3 
 
 The word bank used is the same as the NYT version. 
 
-The answer is randomly generated amongst an answer bank.
-
-Currently missing:
-1. Answer bank
+The answer is randomly generated amongst the official NYT Wordle answer bank.
 
 To play:
 1. Install the 'termcolor' python library
