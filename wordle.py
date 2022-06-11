@@ -21,11 +21,6 @@ response = ''
 turn = 1
 
 print('WORDLE'.center(9))
-#counters
-answer_count = {}
-for a in final_answer.values():
-    answer_count.setdefault(a,0)
-    answer_count[a] = answer_count[a] + 1
 #convert user response to dict
 while turn <= 6:
     current = {1:'', 2:'', 3:'', 4:'', 5:''}
@@ -48,13 +43,16 @@ while turn <= 6:
             color[n] = 'green'
             continue
         for x,a in final_answer.items():
+            answer_count = {}
+            answer_count.setdefault(a,0)
+            answer_count[a] = answer_count[a] + 1
             if word_count[c] <= answer_count[a]:
                 if color[n] != '':
                     break
                 elif c == a:
                     color[n] = 'yellow'
                     continue
-            elif color[n] != '':
+            else:
                 break
 #display answer
     for k,c in color.items():
